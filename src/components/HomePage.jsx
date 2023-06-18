@@ -35,6 +35,7 @@ const HomePage = () => {
           posts.map((post) => {
             return (
               <div className="m-4 border-blue-700 border-2" key={post._id}>
+                <div className="m-2">
                 <h1>
                   {post.title} - {post.price}
                 </h1>
@@ -47,7 +48,7 @@ const HomePage = () => {
                 {post.isAuthor ? (
                   <>
                     <button
-                      className="border-red-600 border-2"
+                      className="border-red-600 border-2 m-1 mt-2"
                       onClick={() => {
                         handleDelete(post._id, token, setPosts);
                       }}
@@ -61,6 +62,7 @@ const HomePage = () => {
                 ) : (
                   <MessageForm token={token} postID={post._id} author={post.author.username}/>
                 )}
+                </div>
               </div>
             );
           })}
