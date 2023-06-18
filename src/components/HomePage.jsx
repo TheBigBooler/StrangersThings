@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import CreatePostForm from "./CreatePostForm";
-import { handleDelete, getPostsWithAuth } from "./HelperFunctions";
+import { handleDelete, getPostsWithAuth, sendMessage } from "./HelperFunctions";
+import MessageForm from "./MessageForm";
 
 const HomePage = () => {
   const { posts, setPosts, isLoggedIn, user, token } = useOutletContext();
+  // const [message, setMessage] = useState("")
 
   useEffect(() => {
     getPostsWithAuth(token, setPosts)
@@ -21,10 +23,10 @@ const HomePage = () => {
         </>
       ) : (
         <h3>
-          Please
+          Please 
           <Link to="/" className="underline">
             login
-          </Link>
+          </Link> 
           to access all features
         </h3>
       )}
@@ -44,14 +46,20 @@ const HomePage = () => {
                 <p>{post.description}</p>
                 {post.isAuthor ? (
                   <>
-                    <button className="border-red-600 border-2" onClick={ () => {
-                    handleDelete(post._id, token, setPosts)
-                    }}>
-                      Delete</button>
-                    <button className="border-yellow-200 border-2 ml-5">Edit</button>
+                    <button
+                      className="border-red-600 border-2"
+                      onClick={() => {
+                        handleDelete(post._id, token, setPosts);
+                      }}
+                    >
+                      Delete
+                    </button>
+                    <button className="border-yellow-200 border-2 ml-5">
+                      Edit
+                    </button>
                   </>
                 ) : (
-                  <button className="border-green-700 border-2"> Send Message</button>
+                  <MessageForm token={token} postID={post._id} author={post.author.username}/>
                 )}
               </div>
             );

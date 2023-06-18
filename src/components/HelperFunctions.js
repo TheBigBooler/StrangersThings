@@ -35,7 +35,29 @@ async function getPostsWithAuth(authToken, setFunction) {
       console.error(error);
     }
   }
-export { handleDelete, getPostsWithAuth }
+
+const sendMessage = async (postID, authToken, message) => {
+    try {
+        const response = await fetch(`${URL}/posts/${postID}/messages`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`
+            },
+            body: JSON.stringify({
+                message: {
+                    content: message
+                }
+            }) 
+        });
+        const result = await response.json();
+        console.log(result)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export { handleDelete, getPostsWithAuth, sendMessage }
 
 // old function that were remade into helpers
 
