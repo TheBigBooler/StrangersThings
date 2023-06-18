@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import CreatePostForm from "./CreatePostForm";
-import { handleDelete, getPostsWithAuth, sendMessage } from "./HelperFunctions";
+import { handleDelete, getPostsWithAuth } from "./HelperFunctions";
 import MessageForm from "./MessageForm";
 
 const HomePage = () => {
@@ -36,26 +36,27 @@ const HomePage = () => {
             return (
               <div className="m-4 border-blue-700 border-2" key={post._id}>
                 <div className="m-2">
-                <h1>
+                <h1 className="text-xl">
                   {post.title} - {post.price}
                 </h1>
+                <p>Located in: {post.location}</p>
                 {post.willDeliver ? (
                   <p>DELIVERY AVAILABLE</p>
                 ) : (
                   <p>PICKUP REQUIRED</p>
-                )}
+                )} 
                 <p>{post.description}</p>
                 {post.isAuthor ? (
                   <>
                     <button
-                      className="border-red-600 border-2 m-1 mt-2"
+                      className="border-red-600 border-2 m-1 mt-2 p-1"
                       onClick={() => {
                         handleDelete(post._id, token, setPosts);
                       }}
                     >
                       Delete
                     </button>
-                    <button className="border-yellow-200 border-2 ml-5">
+                    <button className="border-yellow-200 border-2 ml-5 p-1">
                       Edit
                     </button>
                   </>

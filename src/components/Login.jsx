@@ -51,14 +51,14 @@ const Login = () => {
 
      return (
        <div className="text-center flex-col">
-         <h2>Login:</h2>
+         <h2 className="m-10 text-2xl">Please sign in to continue</h2>
          <form className="flex-col" onSubmit={handleSubmit}>
            <div>
              <label htmlFor="username">Username:</label>
              <input
                name="username"
                type="text"
-               placeholder="Choose a username"
+               className="text-black ml-2"
                value={username}
                onChange={(event) => setUsername(event.target.value)}
                minLength="4"
@@ -66,12 +66,12 @@ const Login = () => {
                required
              />
            </div>
-           <div>
+           <div className="m-4">
              <label htmlFor="password">Password:</label>
              <input
                name="password"
                type="password"
-               placeholder="Choose a password"
+               className="text-black ml-2"
                value={password}
                onChange={(event) => setPassword(event.target.value)}
                minLength="4"
@@ -79,9 +79,16 @@ const Login = () => {
                required
              />
            </div>
-           <button type="submit">Login</button>
+           <button type="submit" className="m-4 border-black border-2">
+             Login
+           </button>
          </form>
-         <p>New to StrangeStuff? <Link to='/register' className="underline">Register here!</Link></p>
+         <p>
+           New to StrangeStuff?{" "}
+           <Link to="/register" className="underline">
+             Register here!
+           </Link>
+         </p>
        </div>
      );
 };

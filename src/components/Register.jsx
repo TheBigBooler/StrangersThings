@@ -57,12 +57,12 @@ const Register = () => {
 
   return (
     <div className="text-center flex-col">
-      <h2>Sign Up:</h2>
+      <h2 className="m-10 text-2xl">Sign Up:</h2>
       <form onSubmit={handleSubmit} className="flex-col">
         <div>
           <label htmlFor="username">Username:</label>
           <input
-            className="text-black"
+            className="text-black ml-2"
             name="username"
             type="text"
             placeholder="Choose a username"
@@ -73,10 +73,10 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="m-4">
           <label htmlFor="password">Password:</label>
           <input
-            className="text-black"
+            className="text-black ml-2"
             name="password"
             type="password"
             placeholder="Choose a password"
@@ -90,10 +90,10 @@ const Register = () => {
         <div>
           <label htmlFor="passwordConfirm">Confirm Password:</label>
           <input
-            className="text-black"
+            className="text-black ml-2"
             name="confirmPassword"
             type="password"
-            placeholder="Confirm password"
+            placeholder="Retype password"
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}
             minLength="4"
@@ -101,7 +101,9 @@ const Register = () => {
             required
           />
         </div>
-        <button type="submit">Create Account</button>
+        <button type="submit" className="m-4 border-black border-2">
+          Create Account
+        </button>
       </form>
     </div>
   );

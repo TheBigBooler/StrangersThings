@@ -21,7 +21,7 @@ const MessageForm = ({ postID, author, token }) => {
           setMessage(event.target.value);
         }}
       ></input>
-      <button type="submit" className="border-green-700 border-2">
+      <button type="submit" className="border-green-700 border-2 p-1">
         Send Message
       </button>
     </form>

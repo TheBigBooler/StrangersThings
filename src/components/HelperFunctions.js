@@ -37,6 +37,9 @@ async function getPostsWithAuth(authToken, setFunction) {
   }
 
 const sendMessage = async (postID, authToken, message) => {
+    if (!authToken) {
+        return alert("You must sign in before sending a message")
+    }
     try {
         const response = await fetch(`${URL}/posts/${postID}/messages`, {
             method: "POST",
