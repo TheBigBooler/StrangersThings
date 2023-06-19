@@ -4,7 +4,7 @@ import { getPostsWithAuth } from "./HelperFunctions";
 const URL = "https://strangers-things.herokuapp.com/api/2303-ftb-mt-web-pt";
 
 
-const CreatePostForm = ({ token, setPosts }) => {
+const CreatePostForm = ({ token, setPosts, setDisplayForm }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("$");
@@ -59,6 +59,8 @@ const CreatePostForm = ({ token, setPosts }) => {
         } catch (error) {
           console.error(error)
           alert('Post creation failed, please try again')
+        } finally {
+          setDisplayForm(false)
         }
     }
 
@@ -119,9 +121,12 @@ const CreatePostForm = ({ token, setPosts }) => {
         ></input>
       </div>
       <div>
-        <button type="submit" className="border-black border-4 mt-5 mb-5">
+        <button type="submit" className="border-black border-4 mt-5 mb-5 mr-5">
           Create Post
         </button>
+        <button onClick={ () => {setDisplayForm(false)}} className="text-red-500 border-red-500 border-2">
+          Cancel Post
+          </button>
       </div>
     </form>
   );

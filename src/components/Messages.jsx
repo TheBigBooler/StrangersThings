@@ -3,11 +3,11 @@ import { useOutletContext } from "react-router-dom";
 const URL = "https://strangers-things.herokuapp.com/api/2303-ftb-mt-web-pt";
 
 const Messages = () => {
-  const { token } = useOutletContext();
+  const { token, user } = useOutletContext();
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    setMessages(getMessages)
+    getMessages()
   }, [token]);
 
   const getMessages = async () => {
@@ -19,21 +19,24 @@ const Messages = () => {
         },
       });
       const result = await response.json();
-      console.log(result.data.messages);
-      return result.data.messages
+      console.log(result.data);
+      setMessages(result.data.messages)
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div>
+    <div className="flex justify-around ">
         {messages.length && messages.map((message) => {
+          if (message.fromUser.username !== user) {
             return (
-                <>
-                <p key={message._id}>{message.content}</p>
-                </>
-            )
+              <div key={message._id} className="mt-8">
+                <p className="text-center">Message from {message.fromUser.username}!</p>
+                <p>In regards to listing: {message.post.title}</p>
+                <p>{message.content}</p>
+              </div>
+            );}
         })}
     </div>
       

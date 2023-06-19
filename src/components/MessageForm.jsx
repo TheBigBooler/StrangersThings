@@ -13,7 +13,7 @@ const MessageForm = ({ postID, author, token }) => {
     >
       <label htmlFor="message">Have a question for {author}?</label>
       <input
-        className="m-2 text-black"
+        className="m-2 text-black w-1/4"
         required
         type="text"
         value={message}
