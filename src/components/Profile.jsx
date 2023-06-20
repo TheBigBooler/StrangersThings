@@ -1,5 +1,5 @@
 import React from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
 import { handleDelete } from "./HelperFunctions";
 
 const Profile = () => {
@@ -29,25 +29,24 @@ const Profile = () => {
                       <p>PICKUP REQUIRED</p>
                     )}
                     <p>{post.description}</p>
-                    
-                      <>
-                        <button
-                          className="border-red-600 border-2 m-1 mt-2 p-1"
-                          onClick={() => {
-                            if (
-                              confirm("Are you sure you want to delete post?")
-                            ) {
-                              handleDelete(post._id, token, setPosts);
-                            }
-                          }}
-                        >
-                          Delete
-                        </button>
-                        <button className="border-yellow-200 border-2 ml-5 p-1">
-                          Edit
-                        </button>
-                      </>
-                    
+
+                    <>
+                      <button
+                        className="border-red-600 border-2 m-1 mt-2 p-1"
+                        onClick={() => {
+                          if (
+                            confirm("Are you sure you want to delete post?")
+                          ) {
+                            handleDelete(post._id, token, setPosts);
+                          }
+                        }}
+                      >
+                        Delete
+                      </button>
+                      <button className="border-yellow-200 border-2 ml-5 p-1">
+                        <Link to={post._id}>Edit</Link>
+                      </button>
+                    </>
                   </div>
                 </div>
               );

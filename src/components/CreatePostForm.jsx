@@ -10,23 +10,6 @@ const CreatePostForm = ({ token, setPosts, setDisplayForm }) => {
   const [location, setLocation] = useState("On Request");
   const [deliverable, setDeliverable] = useState(false);
 
-  // async function getPostsWithAuth() {
-  //   try {
-  //     const request = await fetch(`${URL}/posts`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     const response = await request.json();
-  //     console.log(response);
-  //     setPosts(response.data.posts);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -89,7 +72,7 @@ const CreatePostForm = ({ token, setPosts, setDisplayForm }) => {
       <div>
         <label htmlFor="location">Location:</label>
         <input
-          className="border-black border-2 text-black"
+          className="border-black border-2 text-black mt-5 mr-2"
           type="text"
           value={location}
           onChange={(event) => {
@@ -109,7 +92,7 @@ const CreatePostForm = ({ token, setPosts, setDisplayForm }) => {
       <div>
         <label htmlFor="description">Description:</label>
         <input
-          className="border-black border-2 text-black"
+          className="border-black border-2 text-black w-2/4 mt-5"
           required
           type="text"
           value={description}

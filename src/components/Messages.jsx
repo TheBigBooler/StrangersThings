@@ -27,30 +27,61 @@ const Messages = () => {
   };
 
   return (
-    <div className="flex justify-around">
-      {messages.length &&
-        messages.map((message) => {
-          if (message.fromUser.username !== user) {
-            return (
-              <div key={message._id} className="mt-8 border-blue-700 border-2">
-                <div className="m-1">
-                  <p className="text-center">
-                    Message from {message.fromUser.username}!
-                  </p>
-                  <p>In regards to listing: {message.post.title}</p>
-                  <p> -{message.content}</p>
-                  <div className="text-center">
-                    <button className="border-green-700 border-2"
-                    onClick={() => {
-                      alert("doesn't work yet")
-                    }}>Reply</button>
+    <>
+      <div className="flex m-5 text-3xl">Inbox:
+        {messages.length &&
+          messages.map((message) => {
+            if (message.fromUser.username !== user) {
+              return (
+                <div
+                  key={message._id}
+                  className="mt-8 border-blue-700 border-2 text-xl p-1 mr-4"
+                >
+                  <div className="m-1">
+                    <p className="text-center">
+                      Message from {message.fromUser.username}!
+                    </p>
+                    <p>In regards to listing: {message.post.title}</p>
+                    <p> -{message.content}</p>
+                    <div className="text-center">
+                      <button
+                        className="border-green-700 border-2"
+                        onClick={() => {
+                          alert("doesn't work yet");
+                        }}
+                      >
+                        Reply
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          }
-        })}
-    </div>
+              );
+            }
+          })}
+      </div>
+      <div className="flex m-5 text-3xl mt-20">Outbox:
+        {messages.length &&
+          messages.map((message) => {
+            if (message.fromUser.username === user) {
+              return (
+                <div
+                  key={message._id}
+                  className="mt-8 border-blue-700 border-2 text-xl p-1 mr-4"
+                >
+                  <div className="m-1">
+                    <p className="text-center">
+                      Sent to {message.post.author.username}
+                    </p>
+                    <p>In regards to listing: {message.post.title}</p>
+                    <p> -{message.content}</p>
+                    
+                  </div>
+                </div>
+              );
+            }
+          })}
+      </div>
+    </>
   );
 };
 

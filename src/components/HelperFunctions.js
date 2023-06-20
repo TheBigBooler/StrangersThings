@@ -57,6 +57,7 @@ const sendMessage = async (postID, authToken, message) => {
     console.log(result);
   } catch (error) {
     console.error(error);
+    alert("Message failed")
   }
 };
 

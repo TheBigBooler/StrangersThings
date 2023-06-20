@@ -73,7 +73,7 @@ const HomePage = () => {
                         Delete
                       </button>
                       <button className="border-yellow-200 border-2 ml-5 p-1">
-                        Edit
+                        <Link to={post._id}>Edit</Link>
                       </button>
                     </>
                   ) : (
