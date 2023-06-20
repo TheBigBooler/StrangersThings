@@ -3,7 +3,6 @@ import { getPostsWithAuth } from "./HelperFunctions";
 
 const URL = "https://strangers-things.herokuapp.com/api/2303-ftb-mt-web-pt";
 
-
 const CreatePostForm = ({ token, setPosts, setDisplayForm }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -28,41 +27,40 @@ const CreatePostForm = ({ token, setPosts, setDisplayForm }) => {
   //   }
   // }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        console.log("Form submitted with:", title, price, location, deliverable, description, "and token:", token)
-        try {
-          const response = await fetch(`${URL}/posts`, {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-              post: {
-                title: title,
-                description: description,
-                price: price,
-                location: location,
-                willDeliver: deliverable
-              }
-            })
-          });
-          const result = await response.json();
-          console.log(result.data.post)
-          getPostsWithAuth(token, setPosts);
-          setTitle("");
-          setDescription("");
-          setPrice("$");
-          setLocation("On Request");
-          setDeliverable(false);
-        } catch (error) {
-          console.error(error)
-          alert('Post creation failed, please try again')
-        } finally {
-          setDisplayForm(false)
-        }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(`${URL}/posts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          post: {
+            title: title,
+            description: description,
+            price: price,
+            location: location,
+            willDeliver: deliverable,
+          },
+        }),
+      });
+      const result = await response.json();
+      console.log(result.data.post);
+      getPostsWithAuth(token, setPosts);
+      setTitle("");
+      setDescription("");
+      setPrice("$");
+      setLocation("On Request");
+      setDeliverable(false);
+    } catch (error) {
+      console.error(error);
+      alert("Post creation failed, please try again");
+    } finally {
+      setDisplayForm(false);
     }
+  };
 
   return (
     <form className="flex-col text-center" onSubmit={handleSubmit}>
@@ -124,9 +122,14 @@ const CreatePostForm = ({ token, setPosts, setDisplayForm }) => {
         <button type="submit" className="border-black border-4 mt-5 mb-5 mr-5">
           Create Post
         </button>
-        <button onClick={ () => {setDisplayForm(false)}} className="text-red-500 border-red-500 border-2">
+        <button
+          onClick={() => {
+            setDisplayForm(false);
+          }}
+          className="text-red-500 border-red-500 border-2"
+        >
           Cancel Post
-          </button>
+        </button>
       </div>
     </form>
   );
